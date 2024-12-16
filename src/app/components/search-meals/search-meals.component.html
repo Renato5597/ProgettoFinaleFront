@@ -1,0 +1,28 @@
+<h2>Scegli il tuo pasto</h2>
+
+<form id="searchForm" (ngSubmit)="postMealInfo()">
+    <label for="MealName">Inserisci il nome: </label>
+    <input type="text" id="MealName" [(ngModel)]="mealInput" name="Name" />
+    <button type="submit">Cerca</button>
+</form>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 text-center mt-5">
+            <h3>Info meal</h3>
+            <p>{{myMeal?.strMeal}}</p>
+            <p>{{myMeal?.strArea}}</p>
+            <p>{{myMeal?.strCategory}}</p>
+            <p>{{myMeal?.strInstructions}}</p>
+
+        </div>
+        <div class="col-md-6 text-center mt-5">
+            <img src="{{myMeal?.strMealThumb}}">
+           
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p>Mangia e bevi sano</p>
+</footer>
