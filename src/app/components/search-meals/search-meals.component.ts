@@ -2,12 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MealInfo } from '../../models/meals.model';
 import { MealretriverService } from '../../services/mealretriver.service';
+import { CommonModule } from '@angular/common';
 
 
 @Component({
   selector: 'app-search-meals',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, CommonModule],
   templateUrl: './search-meals.component.html',
   styleUrl: './search-meals.component.css'
 })
@@ -17,7 +18,7 @@ export class SearchMealsComponent implements OnInit{
     console.log('Pagina caricata correttamente'); 
   }
 
-  myMeal : MealInfo | undefined
+  myMeal : MealInfo[] | undefined
   mealInput: any;
 
   constructor(private mealService: MealretriverService){
@@ -25,7 +26,7 @@ export class SearchMealsComponent implements OnInit{
 
   postMealInfo(): void {
     this.mealService.getMealInfo(this.mealInput).subscribe((data) =>{
-      this.myMeal = data.mealInfo;
+      this.myMeal = data.mealInfoList;
     })
   }
   

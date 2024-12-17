@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { MealretriverService } from '../../services/mealretriver.service';
 import { MealRicerca } from '../../models/meals.model';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-most-searched',
   standalone: true,
-  imports: [],
+  imports: [CommonModule, FormsModule],
   templateUrl: './most-searched.component.html',
   styleUrl: './most-searched.component.css'
 })
@@ -19,16 +21,13 @@ export class MostSearchedComponent implements OnInit{
     
   }
   
-  listMeals: MealRicerca []| undefined
-  input : any
+  listMeals: MealRicerca [] = [];
+  inputNumber : number = 0;
   
   postMostSearched(): void {
-    this.mealService.getMostSearched(this.input).subscribe((data) =>{
-      data.forEach(element => {
-        this.listMeals?.push(element);
-      });
-    
-    })
+    this.mealService.getMostSearched(this.inputNumber).subscribe((data) =>{
+      this.listMeals = data;
+    });
   }
   
 

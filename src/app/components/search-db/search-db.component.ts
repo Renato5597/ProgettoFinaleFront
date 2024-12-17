@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { MealInfo, MealRicerca } from '../../models/meals.model';
 import { MealretriverService } from '../../services/mealretriver.service';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-search-db',
   standalone: true,
-  imports: [],
+  imports: [CommonModule, FormsModule],
   templateUrl: './search-db.component.html',
   styleUrl: './search-db.component.css'
 })
@@ -14,18 +16,14 @@ export class SearchDBComponent implements OnInit{
     console.log('Pagina caricata correttamente'); 
   }
 
-  constructor(private mealService: MealretriverService){
-  
+  constructor(private mealService: MealretriverService){  
   }
 
-  listMeal: MealRicerca []| undefined
-
+  listMeal: MealRicerca [] = []
 
   postDBInfo(): void {
     this.mealService.getAllMeals().subscribe((data) =>{
-      data.forEach(element => {
-        this.listMeal?.push(element);
-      });
-    })
+      this.listMeal = data;  
+    });
   }
 }

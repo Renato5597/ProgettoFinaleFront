@@ -1,1 +1,20 @@
+<div class="searchDB-container">
+  <h1>My database</h1>
 
+
+  <form (ngSubmit)="postDBInfo()">
+    <button type="submit" class="btn btn-primary">Get DB</button>
+  </form>
+
+  <div class="meal-list">
+    <h2>Results:</h2>
+    <ul *ngIf="listMeal && listMeal.length > 0; else noResults">
+      <li *ngFor="let meal of listMeal">
+        {{ meal.id }} - {{ meal.nomeRicerca }} - {{meal.countSearch}}
+      </li>
+    </ul>
+    <ng-template #noResults>
+      <p>No meals found.</p>
+    </ng-template>
+  </div>
+</div>

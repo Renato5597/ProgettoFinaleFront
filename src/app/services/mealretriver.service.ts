@@ -14,19 +14,18 @@ export class MealretriverService {
 
   
 
-  getMealInfo(choice: string): Observable<{message: string; mealInfo: MealInfo}> {
+  getMealInfo(choice: string): Observable<{message: string; mealInfoList: MealInfo[]}> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
     });
-    return this.http.post<{ message: string; mealInfo: MealInfo }>(`${this.URL}/mealInfo?stringMeal=${choice}`, {}, { headers });
+    return this.http.post<{ message: string; mealInfoList: MealInfo[] }>(`${this.URL}/mealInfo?stringMeal=${choice}`, {}, { headers });
   }
 
 
 
   getMostSearched(choice: number): Observable<MealRicerca[]> {
-    return this.http.post<MealRicerca[]>(`${this.URL}/mostSearched`, { choice });
+    return this.http.post<MealRicerca[]>(`${this.URL}/mostSearched?choice=${choice}`, {});
   }
-
 
   getAllMeals(): Observable<MealRicerca[]> {
     return this.http.get<MealRicerca[]>(`${this.URL}/mealRicerca`);
