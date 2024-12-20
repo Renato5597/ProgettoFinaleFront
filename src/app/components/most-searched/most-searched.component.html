@@ -1,32 +1,32 @@
 <div class="most-searched-container">
-    <h1>Most Searched Meals</h1>
-  
-    
-    <form (ngSubmit)="postMostSearched()">
-      <div class="form-group">
-        <label for="inputNumber">Enter the Number of Meals:</label>
-        <input 
-          type="number" 
-          id="inputNumber" 
-          name="inputNumber"
-          [(ngModel)]="inputNumber" 
-          required 
-          class="form-control"
-          placeholder="Enter a number" />
-      </div>
-      <button type="submit" class="btn btn-primary">Search</button>
-    </form>
-  
+  <h1>Most Searched Meals</h1>
 
-    <div class="meal-list">
-      <h2>Results:</h2>
-      <ul *ngIf="listMeals && listMeals.length > 0; else noResults">
-        <li *ngFor="let meal of listMeals">
-          {{ meal.nomeRicerca }} - {{ meal.countSearch }}
+
+  <form (ngSubmit)="postMostSearched()">
+    <div class="form-group">
+      <label for="inputNumber">Enter the Number of Meals:</label>
+      <input type="number" id="inputNumber" name="inputNumber" [(ngModel)]="inputNumber" required class="form-control"
+        placeholder="Enter a number" />
+    </div>
+    <button type="submit" class="btn btn-primary">Search</button>
+  </form>
+
+
+
+  <div class="meal-list">
+    <h2>Results:</h2>
+    <ng-container *ngIf="listMeals && listMeals.length > 0; else noResults">
+      <ul class="list-group">
+        <li *ngFor="let meal of listMeals" class="list-group-item d-flex justify-content-between align-items-center">
+          <div>
+            <strong>{{ meal.nomeRicerca }}</strong>
+          </div>
+          <span class="badge bg-primary rounded-pill">{{ meal.countSearch }}</span>
         </li>
       </ul>
-      <ng-template #noResults>
-        <p>No meals found.</p>
-      </ng-template>
-    </div>
+    </ng-container>
+    <ng-template #noResults>
+      <p class="text-danger">No meals found. Try searching again.</p>
+    </ng-template>
   </div>
+</div>

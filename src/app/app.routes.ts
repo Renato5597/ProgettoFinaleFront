@@ -10,5 +10,4 @@ export const routes: Routes = [
     {path: 'search' , component: SearchMealsComponent},
     {path: 'ricerche' , component: MostSearchedComponent},
     {path: 'ricercheDB' , component: SearchDBComponent},
-
 ];

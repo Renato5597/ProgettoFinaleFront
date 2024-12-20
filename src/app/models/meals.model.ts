@@ -42,6 +42,7 @@ export class MealInfo {
     strMeasure13: string | undefined;
     strMeasure14: string | undefined;
     strMeasure15: string | undefined;
+    strSource: string | undefined
 }
 
 export class MealRicerca{

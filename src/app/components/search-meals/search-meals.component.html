@@ -1,10 +1,14 @@
 <h2>Scegli il tuo pasto</h2>
 
-<form id="searchForm" (ngSubmit)="postMealInfo()">
-    <label for="MealName">Inserisci il nome: </label>
-    <input type="text" id="MealName" [(ngModel)]="mealInput" name="Name" />
-    <button type="submit">Cerca</button>
+<form id="searchForm" (ngSubmit)="postMealInfo()" class="search-form">
+    <div class="mb-3">
+        <label for="MealName" class="form-label">Inserisci il nome:</label>
+        <input type="text" id="MealName" [(ngModel)]="mealInput" name="Name" class="form-control"
+            placeholder="Scrivi il nome del pasto" required />
+    </div>
+    <button type="submit" class="btn btn-primary">Cerca</button>
 </form>
+
 
 
 <div class="meal-list">
@@ -22,15 +26,17 @@
                         <p class="card-text" style="max-height: 6em; overflow: scroll;">
                             {{ meal.strInstructions }}
                         </p>
-                        <a href= "{{meal.strYoutube}}" class=" btn btn-primary mt-2" style="display: block;" target="_blank"> See Video </a> 
-                        <a href= "" class=" btn btn-primary mt-2" style="display: block;"> More info </a> 
+                        <a *ngIf="meal?.strYoutube" href="{{meal?.strYoutube}}" class=" btn btn-primary mt-2"
+                            style="display: block;" target="_blank" rel="noopener noreferrer"> See Video </a>
+                        <a *ngIf="meal?.strSource" href="{{meal?.strSource}}" class=" btn btn-primary mt-2"
+                            style="display: block;" target="_blank" rel="noopener noreferrer"> More info </a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <ng-template #noResults>
-        <p>No meals found.</p>
+        <p class="text-danger">No meals found. Try searching again.</p>
     </ng-template>
 </div>
 

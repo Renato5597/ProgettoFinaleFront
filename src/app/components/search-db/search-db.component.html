@@ -1,6 +1,5 @@
 <div class="searchDB-container">
-  <h1>My database</h1>
-
+  <h1>My Database</h1>
 
   <form (ngSubmit)="postDBInfo()">
     <button type="submit" class="btn btn-primary">Get DB</button>
@@ -8,13 +7,20 @@
 
   <div class="meal-list">
     <h2>Results:</h2>
-    <ul *ngIf="listMeal && listMeal.length > 0; else noResults">
-      <li *ngFor="let meal of listMeal">
-        {{ meal.id }} - {{ meal.nomeRicerca }} - {{meal.countSearch}}
-      </li>
-    </ul>
+    <ng-container *ngIf="listMeal && listMeal.length > 0; else noResults">
+      <ul class="list-group">
+        <li
+          *ngFor="let meal of listMeal"
+          class="list-group-item d-flex justify-content-between align-items-center">
+          <div>
+            <strong>{{ meal.nomeRicerca }}</strong>
+          </div>
+          <span class="badge bg-primary rounded-pill">{{ meal.countSearch }}</span>
+        </li>
+      </ul>
+    </ng-container>
     <ng-template #noResults>
-      <p>No meals found.</p>
+      <p class="text-danger">No meals found. Try searching again.</p>
     </ng-template>
   </div>
 </div>
